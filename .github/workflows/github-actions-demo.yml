@@ -7,9 +7,6 @@ on:
   pull_request:
     branches: [main]
 
-
-
-
 jobs:
   init:
     runs-on: ubuntu-latest
@@ -20,13 +17,15 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Starting Node.js ${{ matrix['node-version'] }}
+      - name: Setup Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix['node-version'] }}
-      - name: install modules
-        run : npm install
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies
+        run: npm install
         working-directory: ./youtube-clone
-      - name: build project
-        run : npm run build
+
+      - name: Build project
+        run: npm run build
         working-directory: ./youtube-clone
