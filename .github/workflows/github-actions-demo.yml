@@ -15,17 +15,22 @@ jobs:
         node-version: [17.x]
 
     steps:
-      - uses: actions/checkout@v3
+      - name: 📥 Checkout repo
+        uses: actions/checkout@v3
 
-      - name: Setup Node.js ${{ matrix.node-version }}
+      - name: 🧰 Setup Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Install dependencies
+      - name: 📦 Install dependencies
         run: npm install
         working-directory: ./youtube-clone
 
-      - name: Build project
+      - name: 📋 Show available scripts (debug)
+        run: npm run
+        working-directory: ./youtube-clone
+
+      - name: 🏗️ Build project
         run: npm run build
         working-directory: ./youtube-clone
